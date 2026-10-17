@@ -47,6 +47,14 @@ Vite prints a local URL, usually http://localhost:5173. By default, the frontend
 - **Backend:** deploy `backend/` to a Python-capable service such as Render. Start command: `uvicorn app.main:app --host 0.0.0.0 --port $PORT`.
 - Set `CORS_ORIGINS` on the backend to the exact frontend origin.
 
+## One-click deployment on Render
+
+This repository includes a Blueprint at `render.yaml` that creates two services together: a static Vite frontend and the FastAPI backend. Connect your Render account to GitHub and review both services before deploying.
+
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/imranalam-123/tatkal-assistant-pro)
+
+After Render provisions both services, open the frontend service URL. The Blueprint wires the backend's public URL into the frontend build and configures the API's CORS setting. The free API service may sleep after inactivity and take time to wake up.
+
 ## Before production
 
 1. Integrate an authorized train data provider and clearly cite its source.
