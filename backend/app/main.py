@@ -71,7 +71,12 @@ def search_trains(
     class_code: str = Query(default="3A", max_length=5),
 ):
     """Return illustrative train cards for UI development, never live availability."""
-    trains = [t for t in DEMO_TRAINS if t["from"].casefold() == from_station.casefold() and t["to"].casefold() == to_station.casefold()]
+    trains = [
+        t for t in DEMO_TRAINS
+        if t["from"].casefold() == from_station.casefold()
+        and t["to"].casefold() == to_station.casefold()
+        and class_code.upper() in t["classes"]
+    ]
     if not trains:
         # Return a clearly labeled placeholder instead of pretending a live result exists.
         trains = [{
